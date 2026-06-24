@@ -45,7 +45,7 @@ SELECT * FROM Abteilung;
 
 
 CREATE TABLE Mitarbeiter
-(ma_id INT IDENTITY(1,1),
+( ma_id INT IDENTITY(1,1),
 vorname VARCHAR(100),
 nachname VARCHAR(100),
 str_hsnr VARCHAR(100),

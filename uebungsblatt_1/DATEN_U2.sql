@@ -41,4 +41,4 @@ INSERT INTO Mitarbeiter VALUES
 --SELECT * FROM Familienstand 
 --SELECT * FROM Arbeitszeitmodell 
 --SELECT * FROM Abteilung 
---SELECT * FROM Mitarbeiter 
+SELECT * FROM Mitarbeiter 
