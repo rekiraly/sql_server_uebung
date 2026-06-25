@@ -46,7 +46,10 @@ create table kermit_archive (
 nummer int,
 vname varchar(10)
 );
+<<<<<<< HEAD
 
+=======
+>>>>>>> da4f02092ca2366a7300a03c777460fe5c09739c
 insert into kermit_archive
 select * from kermit;
 
@@ -55,32 +58,57 @@ delete from kermit_archive;
 
 insert into kermit_archive
 select * from kermit
+<<<<<<< HEAD
 where vorname <> 'Kermit' and vorname != 'null' 
 and vorname is not null
 
+=======
+where vorname <> 'Kermit' and vorname != 'null' and vorname is not null;
+
+
+---------------------------------------
+>>>>>>> da4f02092ca2366a7300a03c777460fe5c09739c
 create table kermit_archive_2 (
 id int identity(1,1),
 vname varchar(10)
 );
 
+<<<<<<< HEAD
 select * from kermit_archive_2
 
 insert into kermit_archive_2
 select vorname from kermit;
 
 select * from kermit_archive_2;
+=======
+insert into kermit_archive_2 
+select vorname from kermit
+select * from kermit_archive_3;
+>>>>>>> da4f02092ca2366a7300a03c777460fe5c09739c
 
 select * into kermit_archive_3 from kermit;
 select * from kermit_archive_3;
 
+<<<<<<< HEAD
 select * into kermit_archive_2 from kermit;
 
 select * into neu_kermit from kermit_archive_2;
 select * from neu_kermit;
 
+=======
+
+select * into neu_kermin from kermit_archive_2;
+select * from neu_kermit,
+>>>>>>> da4f02092ca2366a7300a03c777460fe5c09739c
 insert into neu_kermit values ('asök');
 
 
 
 
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> da4f02092ca2366a7300a03c777460fe5c09739c
