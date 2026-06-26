@@ -7,7 +7,12 @@ INSERT INTO genre VALUES
 ('Electronic'),
 ('Reggae');
 
-select * from genre;
+select * from genre
+where genre = 'Pop';
+
+select TABLE_NAME, COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH
+from INFORMATION_SCHEMA.COLUMNS
+where TABLE_NAME = 'genre'
 
 INSERT INTO interpret VALUES
 ('The Rolling Stones'),
