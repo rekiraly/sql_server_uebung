@@ -19,7 +19,7 @@ INSERT INTO arbeitszeitmodell VALUES
 
 select * from arbeitszeitmodell
 select * from arbeitszeitmodell where modell_code = 'vz'
-select * from arbeitszeitmodell where modell_code = 'VZ'
+--select * from arbeitszeitmodell where modell_code = 'VZ'
 
 
 

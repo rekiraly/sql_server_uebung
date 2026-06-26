@@ -153,5 +153,5 @@ INSERT INTO titel (titel, interpret_id, genre_id) VALUES
 select * from genre;
 select * from interpret;
 
-select * from titel;
+
 select * from titel;
