@@ -36,3 +36,23 @@ CONSTRAINT FK_ma_abt_abt_nr FOREIGN KEY (abt_nr) REFERENCES abteilung(abtnr)
 );
 
 --select * from mitarbeiter;
+
+create table ma(
+nname varchar(100), 
+geb_date date
+);
+
+insert into ma (geb_date, nname)
+select gebdatum,vname  from mitarbeiter; 
+
+select ma.nname Nachname, ma.vname Vorname, abt.abtbez Bezeichnung from mitarbeiter ma
+join abteilung abt on abt.abtnr=ma.abt_nr 
+
+select ma.vname Vorname, ma.nname Nachname, abt.abtbez Abteilung, azm.az_bez
+from mitarbeiter ma
+join abteilung abt on abt.abtnr=ma.abt_nr
+join arbeitszeitmodell azm on azm.modell_code=ma.azm_id
+where (abt.abtbez='Marketing' or abt.abtbez ='IT') and azm.modell_code='vz'
+--order by ma.nname ;
+order by abt.abtbez DESC;
+

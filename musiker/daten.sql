@@ -80,6 +80,11 @@ insert into titel values
 ('Papercut', 10, 1), 
 ('Somewhere I Belong', 10, 1)
 
+--select * from genre
+select * from titel where titel.titel='Numb'
+update titel set titel.genre_id=8where titel.titel='Numb';
+select * from genre
+
 select titel, interpret.name, genre.genre from titel
 join interpret on titel.interpret_id = interpret.i_id
 join genre on titel.genre_id = genre.g_id
