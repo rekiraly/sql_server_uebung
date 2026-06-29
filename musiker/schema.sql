@@ -1,8 +1,8 @@
- --DROP TABLE genre;
- --DROP TABLE interpret;
- --DROP TABLE titel;
- --DROP TABLE veranstaltungsort;
- --DROP TABLE in_ver;
+ DROP TABLE if exists titel;
+ DROP TABLE if exists in_ver;
+ DROP TABLE if exists genre;
+ DROP TABLE if exists interpret;
+ DROP TABLE if exists veranstaltungsort;
 
 CREATE TABLE genre (
 g_id INT IDENTITY(1,1) PRIMARY KEY,
