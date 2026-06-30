@@ -1,3 +1,5 @@
+
+
 INSERT INTO abteilung VALUES
 ('Personal'),
 ('Vertrieb'),
