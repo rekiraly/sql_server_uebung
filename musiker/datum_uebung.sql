@@ -48,4 +48,38 @@ join veranstaltungsort vort on vort.v_id=in_ver.v_nr
 where i.name = 'Miles Davis' and (year(in_ver.datum_von)<=2026 and year(in_ver.datum_bis)>=2026);
 
 
+-----------------Hausarbeit----------------------------------------------------
+--11. Adele wird am 28.12.2025 in Nuernberg auftreten, es ist aber noch nicht bekannt, welche
+--Titel sie singen wird. Fügen Sie den oder die entsprechenden Datensätze ein.
+--1. Adeles Interpretennummer erfragen
+--2. Nummer des Veranstaltungsorts erfragen
+--3. Datensatz in Verbindungstabelle einfügen
+set dateformat dmy;
+select i.i_id, i.name, vort.ort_name, vort.v_id, in_ver.datum_von 
+from interpret i
+join in_ver on in_ver.i_nr = i.i_id
+join veranstaltungsort vort on vort.v_id = in_ver.v_nr
+where i.name='Adele' and vort.ort_name='Nuernberg' 
+and in_ver.datum_von<='28.12.2025' and in_ver.datum_bis>='28.12.2025'
+
+
+
+--12. Ein Kollege sagt Ihnen, er meint er habe in der Tabelle Veranstaltungsort sowohl Nuernberg
+--als auch Nürnberg gesehen. Prüfen Sie bitte mit einem gezielten select (also kein select wild
+--auf alle Inhalte der Tabelle, sie könnte ja auch abertausende von Datensätzen enthalten) ob
+--beide Schreibweisen gespeichert wurden
+
+select * from veranstaltungsort vort
+where vort.ort_name like 'N%nberg'
+
+--13. Löschen Sie nun den Datensatz, in welchem Nürnberg gespeichert wurde. Nuernberg, darf
+--nicht gelöscht werden
+
+delete from veranstaltungsort where ort_name like 'Nürnberg'
+
+--14. Kontrollieren Sie anschließend mittels eines gezielten Befehls, ob beide Schreibweisen,
+--Nuernberg und Nürnberg noch vorhanden sind.
+SELECT * FROM veranstaltungsort WHERE ort_name like 'N%rnberg';
+
+
 
