@@ -1,8 +1,8 @@
- --DROP TABLE genre;
- --DROP TABLE interpret;
- --DROP TABLE titel;
- --DROP TABLE veranstaltungsort;
- --DROP TABLE in_ver;
+ DROP TABLE if exists titel;
+ DROP TABLE if exists in_ver;
+ DROP TABLE if exists genre;
+ DROP TABLE if exists interpret;
+ DROP TABLE if exists veranstaltungsort;
 
 CREATE TABLE genre (
 g_id INT IDENTITY(1,1) PRIMARY KEY,
@@ -26,7 +26,6 @@ FOREIGN KEY (genre_id) REFERENCES genre(g_id)
 
 CREATE TABLE  veranstaltungsort (
 v_id INT IDENTITY(1,1) PRIMARY KEY,
-
 ort_name VARCHAR(50) NOT NULL
 );
 
@@ -36,7 +35,8 @@ v_nr INT NOT NULL,
 datum_von DATE,
 datum_bis DATE,
 CONSTRAINT PK_in_ver PRIMARY KEY(i_nr, datum_von, datum_bis),
-FOREIGN KEY (v_nr) REFERENCES veranstaltungsort (v_id)
+FOREIGN KEY (v_nr) REFERENCES veranstaltungsort (v_id),
+FOREIGN KEY (i_nr) REFERENCES interpret (i_id)
 
 ); 
 

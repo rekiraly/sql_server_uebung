@@ -55,10 +55,12 @@ select i.name  from interpret i
 join in_ver iv on iv.i_nr = i.i_id
 join veranstaltungsort ort on ort.v_id = iv.v_nr 
 
-select distinct i.name, g.genre from interpret i --distinkt - schreib nur eine zelle von viele gleiche
+select distinct i.name, g.genre from interpret i --distinkt - schreib nur eine zeile von viele gleiche
 join titel t on t.interpret_id = i.i_id
 join genre g on g.g_id=t.genre_id
 order by g.genre;
+
+
 
 
 
