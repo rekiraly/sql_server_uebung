@@ -34,11 +34,14 @@ vorname varchar(10)
 insert into mein_test3 values 
 ('Kermit'), ('Piggieee'), ('Gonzo'),
 (null), ('null'), ('Riz-zo'), ('Waldorf'), ('Waldorf');
+Create table my_test (
+id_test int identity primary key,
+
 
 select * from mein_test3;
 select vorname from mein_test3;
 
-select id Id, vorname VorrrrrName from mein_test3;
+select id Id, vorname VorName from mein_test3;
 
 DELETE FROM mein_test3 where id = 108;
 DELETE FROM mein_test3 where vorname = 'WALdorf';
@@ -47,24 +50,26 @@ DELETE FROM mein_test3 where vorname = 'NUll';
 
 DELETE FROM mein_test3;
 
-DBCC CHECKIDENT ('mein_test3');
+--DBCC CHECKIDENT ('mein_test3');
 
-DBCC CHECKIDENT ('mein_test3', RESEED, 127);
+--DBCC CHECKIDENT ('mein_test3', RESEED, 127);
 
 
 create table mein_test4 (
-id int Primary Key,
+id int identity(1,1) Primary Key,
 vorname varchar(10)
 );
 
 select * from mein_test4;
 
 INSERT INTO mein_test4 VALUES 
-(1, 'Karl'), 
-(2, 'Klara');
+('Karl'), 
+('Klara');
 
 INSERT INTO mein_test4 VALUES 
-(3, 'Karl2'), 
-(20, 'Klara3');
+('Karl2'), 
+('Klara3');
+
+select * from mein_test4;
 
 
