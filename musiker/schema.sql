@@ -26,7 +26,6 @@ FOREIGN KEY (genre_id) REFERENCES genre(g_id)
 
 CREATE TABLE  veranstaltungsort (
 v_id INT IDENTITY(1,1) PRIMARY KEY,
-
 ort_name VARCHAR(50) NOT NULL
 );
 
