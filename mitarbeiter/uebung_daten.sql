@@ -71,3 +71,44 @@ order by ab.abtbez, ma.nname, ma.vname;
 
 
 
+
+----------------------------HAUSAUFGABE----------------------------------------
+
+--6. Welche Mitarbeiter aus dem PLZ-Bereich 90402 bis 90491 arbeiten im HomeOffice?
+select ma.nname, ma.vname, ma.plz
+from mitarbeiter ma
+join arbeitszeitmodell ar on ma.azm_id=ar.modell_code
+where ma.plz >= '90402' and ma.plz<= '90491' and ar.modell_code='ho' ;
+
+--7. -Wir sind im Bereich 90402. Suchen Sie uns bitte den oder die Mitarbeiter heraus, die ebenfalls
+--in dem PLZ-Bereich wohnen. Uns interessiert hier, der Nachname, der Vorname, die
+--Straße und Hausnummer
+select ma.nname, ma.vname, ma.str_hsnr
+from mitarbeiter ma
+where ma.plz='90402'
+
+-- 8. Bitte erzeugen Sie eine Ausgabe aller Mitarbeiter die nach 1974 geboren wurden
+select ma.nname, ma.vname, ma.gebdatum
+from mitarbeiter ma
+where year(ma.gebdatum)>=1974;
+
+--9. Nun bitte eine Ausgabe aller Mitarbeiter die nicht im HomeOffice arbeiten
+select ma.nname, ma.vname, ar.az_bez
+from mitarbeiter ma
+join arbeitszeitmodell ar on ma.azm_id=ar.modell_code
+where ar.modell_code not like 'ho'
+
+-- 10. Bitte erzeugen Sie folgende Ausgabe für alle Mitarbeiter
+select ma.nname Nachname, ma.vname Vorname,
+abt.abtbez Abteilung, ar.az_bez Arbeitszeitmodell,
+ma.gebdatum Geburtsdatum, ma.str_hsnr "Straße und Hausnummer",
+ma.plz PLZ, ma.ort Wohnort
+from mitarbeiter ma
+join abteilung abt on abt.abtnr=ma.abt_nr
+join arbeitszeitmodell ar on ma.azm_id=ar.modell_code
+--------------------------------------------------------------------------
+
+
+
+
+
