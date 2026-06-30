@@ -82,7 +82,7 @@ insert into titel values
 
 --select * from genre
 select * from titel where titel.titel='Numb'
-update titel set titel.genre_id=8 where titel.titel='Numb';
+--update titel set titel.genre_id=8 where titel.titel='Numb';
 select * from genre
 
 select titel, interpret.name, genre.genre from titel
@@ -171,6 +171,7 @@ UPDATE veranstaltungsort SET ort_name='Erlangen' WHERE v_id=3;
 
 
 select * from veranstaltungsort;
+select * from in_ver;
 
 INSERT INTO in_ver (i_nr, v_nr, datum_von, datum_bis) VALUES
 (1, 1, '2026-03-10', '2026-03-11'),
