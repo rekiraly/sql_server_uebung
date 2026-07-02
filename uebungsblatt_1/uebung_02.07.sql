@@ -215,6 +215,56 @@ join tl3_mw_interessen mwi on mwi.intnr=i.intnr
 join tl3_manwoman mw  on mw.mwnr=mwi.mwnr 
 
 --5. Welcher meiner Freunde liest gerne? 
+select mw.nachname, mw.vorname, i.inttext
+from tl3_interessen i
+join tl3_mw_interessen mwi on mwi.intnr=i.intnr
+join tl3_manwoman mw  on mw.mwnr=mwi.mwnr 
+where i.inttext='lesen'
+
+--6. Wie viele Interessen (Anzahl) hat Frau Kron
+select mw.nachname, mw.vorname, count(*)
+from tl3_interessen i
+join tl3_mw_interessen mwi on mwi.intnr=i.intnr
+join tl3_manwoman mw  on mw.mwnr=mwi.mwnr 
+group by mw.nachname, mw.vorname
+having mw.nachname = 'Kron'
+
+--7. Welcher meiner Freunde (nachname, vorname) hat die gleichen Hobbies wie Lecter?
+select mw.nachname, mw.vorname, mwi.intnr 
+from tl3_interessen i
+join tl3_mw_interessen mwi on mwi.intnr=i.intnr
+join tl3_manwoman mw  on mw.mwnr=mwi.mwnr 
+where i.intnr in (select mwi.intnr
+from tl3_manwoman mw
+join tl3_mw_interessen mwi on mwi.mwnr=mw.mwnr
+where mw.nachname = 'Lecter') and mw.nachname not like 'Lecter'
+------------test---
+select mwi.intnr
+from tl3_manwoman mw
+join tl3_mw_interessen mwi on mwi.mwnr=mw.mwnr
+where mw.nachname = 'Lecter'
+
+-------test--
+
+select mw.nachname, mw.vorname--, count(*)
+from tl3_mw_interessen mwi
+join tl3_manwoman mw  on mw.mwnr=mwi.mwnr 
+--group by mw.nachname, mw.vorname
+where mwi.intnr in 
+(select mwi.intnr
+from tl3_manwoman mw
+--join tl3_mw_interessen mwi on mwi.mwnr=mw.mwnr
+where mw.nachname = 'Lecter')   
+
+
+
+--join tl3_manwoman mw  on mw.mwnr=mwi.mwnr 
+group by mwi.mwnr
+--------voll-----------------
+
+
+
+
 
 
 
