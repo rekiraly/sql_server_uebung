@@ -167,11 +167,57 @@ order by count(*) desc
 
 
 
---
+ --
  select top 3 with ties  sm.s_id--, count(*) 'freq'
  from ma_skills sm
  group by sm.s_id
  order by count(*) 
+
+
+
+ --------SELBE_UEBUNG_HA------------
+ --Nachdem wir uns nun durch die Menschlein, Mitarbeiter und Interpreten gewühlt haben,
+ --sind nun die neuen manwoman-Tabellen an der Reihe. 
+--Nutzen Sie bitte für alle Abfragen einen Subselect
+
+--1. Wer hat alles das gleiche Geschlecht wie die Person mit dem Nachname Lecter?
+use manwomanDB
+
+select mw.nachname, mw.vorname, mw.geschlecht 
+from tl3_manwoman mw 
+where mw.geschlecht =(
+
+select geschlecht from tl3_manwoman
+where nachname ='Lecter'
+)
+
+--2. Welcher meiner Freunde (Nachname) hat zugeordnete Interessen?
+
+select mw.mwnr, mw.nachname, mw.vorname-- count(*)
+from tl3_interessen i
+join tl3_mw_interessen mwi on mwi.intnr=i.intnr
+join tl3_manwoman mw  on mw.mwnr=mwi.mwnr
+group by mw.mwnr, mw.nachname, mw.vorname
+
+--3. Welcher meiner Freunde (Nachname) hat zugeordnete Interessen?
+select mw.mwnr, mw.nachname, mw.vorname 
+from tl3_manwoman mw 
+where mw.mwnr not in (select mw.mwnr-- count(*)
+from tl3_interessen i
+join tl3_mw_interessen mwi on mwi.intnr=i.intnr
+join tl3_manwoman mw  on mw.mwnr=mwi.mwnr
+group by mw.mwnr, mw.nachname, mw.vorname)
+
+--4.Welche Interessen haben meine Freunde? (nachname, Vorname, Interesse (also z. B. Lesen))
+select mw.nachname, mw.vorname, i.inttext
+from tl3_interessen i
+join tl3_mw_interessen mwi on mwi.intnr=i.intnr
+join tl3_manwoman mw  on mw.mwnr=mwi.mwnr 
+
+--5. Welcher meiner Freunde liest gerne? 
+
+
+
 
 
 
