@@ -229,6 +229,7 @@ join tl3_manwoman mw  on mw.mwnr=mwi.mwnr
 group by mw.nachname, mw.vorname
 having mw.nachname = 'Kron'
 
+----------------------------------------------------------------------
 --7. Welcher meiner Freunde (nachname, vorname) hat die gleichen Hobbies wie Lecter?
 select mw.nachname, mw.vorname, mwi.intnr 
 from tl3_interessen i
@@ -246,28 +247,102 @@ where mw.nachname = 'Lecter'
 
 -------test--
 
-select mw.nachname, mw.vorname--, count(*)
+select mw.nachname, mw.vorname, mwi.mwnr,  count(*)
 from tl3_mw_interessen mwi
 join tl3_manwoman mw  on mw.mwnr=mwi.mwnr 
---group by mw.nachname, mw.vorname
-where mwi.intnr in 
+where 
+mwi.intnr in 
 (select mwi.intnr
 from tl3_manwoman mw
---join tl3_mw_interessen mwi on mwi.mwnr=mw.mwnr
-where mw.nachname = 'Lecter')   
+join tl3_mw_interessen mwi on mwi.mwnr=mw.mwnr
+where mw.nachname = 'Lecter') 
+group by mw.nachname, mw.vorname, mwi.mwnr
+having  (COUNT(*) = (
+      SELECT COUNT(*) 
+      FROM tl3_manwoman mw2
+      JOIN tl3_mw_interessen mwi2 ON mw2.mwnr = mwi2.mwnr
+      WHERE mw2.nachname = 'Lecter'
+  )) ;
+  
+  
+  /*AND  
+  mwi.intnr in 
+(select mwi.intnr
+from tl3_manwoman mw
+join tl3_mw_interessen mwi on mwi.mwnr=mw.mwnr
+where mw.nachname = 'Lecter')   */
 
 
 
 --join tl3_manwoman mw  on mw.mwnr=mwi.mwnr 
-group by mwi.mwnr
---------voll-----------------
+
+--------voll von gemini -----------------
+SELECT mw.nachname, mw.vorname
+FROM tl3_manwoman mw
+JOIN tl3_mw_interessen mwi ON mw.mwnr = mwi.mwnr
+WHERE mw.nachname <> 'Lecter' -- Lecter selbst ausschließen
+GROUP BY mw.mwnr, mw.nachname, mw.vorname
+HAVING 
+  -- 1. Die Person muss genau so viele Interessen haben wie Lecter
+  COUNT(mwi.intnr) = (
+      SELECT COUNT(*) 
+      FROM tl3_manwoman mw2
+      JOIN tl3_mw_interessen mwi2 ON mw2.mwnr = mwi2.mwnr
+      WHERE mw2.nachname = 'Lecter'
+  )
+  -- 2. ALLE Interessen der Person müssen in Lecters Interessenliste liegen
+  AND COUNT(CASE WHEN mwi.intnr IN (
+      SELECT mwi3.intnr 
+      FROM tl3_manwoman mw3
+      JOIN tl3_mw_interessen mwi3 ON mw3.mwnr = mwi3.mwnr
+      WHERE mw3.nachname = 'Lecter'
+  ) THEN 1 END) = COUNT(mwi.intnr);
+
+  -------------------------------------------
+
+  --8. Welche intnr wurden am häufigsten genannt und wie oft?  Sternchenaufgabe 
+--Tipp: count und max aber ohne top 
+
+select mwi.intnr , count(*) anzahl
+from tl3_mw_interessen mwi
+group by mwi.intnr
+having count(*) =
+(
+select max(bf.Anzahl) 
+from (select count(*) Anzahl 
+from tl3_mw_interessen mwi
+group by mwi.intnr
+)bf)
 
 
+--9. Gleiches nun mit dem inttext
 
+select i.inttext, count(*) anzahl
+from tl3_mw_interessen mwi
+join tl3_interessen i on mwi.intnr=i.intnr
+group by i.inttext
+having count(*) =
+(
+select max(bf.Anzahl) 
+from (select count(*) Anzahl 
+from tl3_mw_interessen mwi
+group by mwi.intnr
+)bf)
 
+--10. Wer hat genauso viele Interessen wie die Person mit dem Nachnamen Tuck?  
+--Doppel-Sternchenaufgabe
 
-
-
+select mwi.mwnr, mw.nachname, count(*)
+from tl3_mw_interessen mwi
+join tl3_manwoman mw on mw.mwnr=mwi.mwnr
+group by mwi.mwnr, mw.nachname
+having count(*) in 
+(
+select  count(*)
+from tl3_mw_interessen mwi
+join tl3_manwoman mw on mw.mwnr=mwi.mwnr
+group by mwi.mwnr, mw.nachname having mw.nachname='Tuck'
+)
 
 
 
