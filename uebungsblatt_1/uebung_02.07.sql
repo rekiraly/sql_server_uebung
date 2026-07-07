@@ -345,6 +345,20 @@ group by mwi.mwnr, mw.nachname having mw.nachname='Tuck'
 )
 
 
+/*Sternchen extrem 
+Meine Freunde haben viele Hobbies. Ein oder mehrere Hobbies wurden am häufigsten genannt.  
+Was ist es und von wem wurde es genannt? 
+Vorgehensweise: 
+Sie müssen ermitteln welches Interesse am häufigsten genannt wurde. Vielleicht ist es eines, viel
+leicht teilen sich mehrere Interessen den ersten Platz (gleiche Anzahl an Nennungen. Wäre beispiels
+weise stricken 3-mal genannt worden, Fallschirmspringen 7-mal und kochen auch 7-mal, so würden 
+sich Fallschirmspringen und kochen den ersten Platz teilen.  
+Anschließend müssen Sie herausfinden, welche Person dieses Interesse hat. Es können auch mehrere 
+Personen sein, die sich das meistgenannte bzw. die meistgenannten Hobbies teilen. 
+Gesucht sind: 
+Menschennummer, Nachname, Vorname, Interessensnummer und Interessenstext 
+Das ganze selbstverständlich in einer Anweisung.*/
+
 
 
 
